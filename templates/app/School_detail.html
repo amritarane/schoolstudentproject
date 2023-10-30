@@ -1,0 +1,30 @@
+{% extends 'app/dummy.html' %}
+
+{% block title %}
+<title>Details page</title>
+{% endblock %}
+
+{% block body_block %}
+<h1>Detail information of {{schoolobj}} </h1>
+    <h2>school name is {{schoolobj.SchoolName}}</h2>
+    <h2>school location is {{schoolobj.location}}</h2>
+    <h2>school principal is {{schoolobj.principal}}</h2>
+<h1>student of {{schoolobj}} are</h1>
+<table border="3px">
+    <tr>
+        <th>student name</th>
+        <th>student age</th>
+        <th>student email</th>
+    </tr>
+    {% for st in schoolobj.students.all %}
+    <tr>
+        <td>{{st.StudentName}}</td>
+        <td>{{st.age}}</td>
+        <td>{{st.email}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{url 'update' pk=schoolobj.pk }" class="btn btn-danger"> Update</a>
+
+<a href="{url 'delete' pk=schoolobj.pk }" class="btn btn-danger"> Delete</a>
+{% endblock %}
